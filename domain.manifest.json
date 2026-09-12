@@ -1,0 +1,80 @@
+{
+  "_instructions": "本文件是行业接入四件套之一。域 ID 一经分配不复用。填完跑平台侧校验器自测。",
+  "profile_version": "domain/1.0",
+  "domain_id": "hr",
+  "domain_name": "人力 · 招聘公平性与用工合规",
+  "operator": {
+    "org": "待认领 — 本域开放给具备资质的运营方",
+    "contact": "见 README 的「认领方式」",
+    "agent_card": "https://SynomosAI.github.io/.well-known/agent-card.json"
+  },
+  "attributes": [
+    {
+      "key": "hr.ai_screening_disclosure",
+      "type": "boolean",
+      "issuer_required": false,
+      "ttl_days": 365,
+      "assurance_min": "self-declared",
+      "visibility_default": "private"
+    },
+    {
+      "key": "hr.protected_attribute_exclusion",
+      "type": "enum",
+      "values": [
+        "excluded",
+        "partially_excluded",
+        "not_excluded",
+        "unverified"
+      ],
+      "issuer_required": true,
+      "ttl_days": 365,
+      "assurance_min": "verified",
+      "visibility_default": "private"
+    },
+    {
+      "key": "hr.human_review_available",
+      "type": "boolean",
+      "issuer_required": true,
+      "ttl_days": 365,
+      "assurance_min": "verified",
+      "visibility_default": "private"
+    },
+    {
+      "key": "hr.job_qualification",
+      "type": "enum",
+      "values": [
+        "license_valid",
+        "license_missing",
+        "not_required"
+      ],
+      "issuer_required": false,
+      "ttl_days": 365,
+      "assurance_min": "self-declared",
+      "visibility_default": "private"
+    },
+    {
+      "key": "hr.labor_contract_status",
+      "type": "enum",
+      "values": [
+        "signed",
+        "pending",
+        "none",
+        "dispatched"
+      ],
+      "issuer_required": true,
+      "ttl_days": 365,
+      "assurance_min": "verified",
+      "visibility_default": "private"
+    }
+  ],
+  "checker_endpoint": "mcp://pending-claim/hr-checker",
+  "gate_map_ref": "./gate-map.json",
+  "privacy_ref": "./privacy.json",
+  "red_lines": [
+    "是否排除受保护特征须由用人单位核验并留痕，AI 不得自行认定无歧视",
+    "不得输出对具体候选人的录用、淘汰建议或排名结论",
+    "不得输出涉及性别、年龄、地域、健康状况、婚育状况等受保护特征的筛选判断"
+  ],
+  "valid_from": "2026-09-12",
+  "status": "RESERVED"
+}
